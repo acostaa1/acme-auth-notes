@@ -38,7 +38,7 @@ app.get('/api/purchases', async(req, res, next)=> {
 
 app.get('/api/notes', async (req, res, next) => {
   try {
-    const notes = await Note.findAll();
+    const notes = await Note.findAll(req.headers.authorization);
     res.send(notes)
   } catch (ex) {
     next(ex) 

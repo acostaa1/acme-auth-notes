@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { logout } from './store';
+import { logout, loadNotes } from './store';
 import { Link } from 'react-router-dom';
 
 const Home = ({ auth, logout, notes})=> {
@@ -22,6 +22,9 @@ const mapDispatch = (dispatch)=> {
   return {
     logout: ()=> {
       return dispatch(logout());
+    },
+    loadNotes: () => {
+      return dispatch(loadNotes())
     }
   }
 }

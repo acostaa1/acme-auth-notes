@@ -4,8 +4,19 @@ import logger from 'redux-logger';
 import axios from 'axios';
 
 const notes = (state = [], action)=> {
+  if (action.type === 'LOAD_NOTES') {
+    return action.notes
+  }
   return state;
 };
+
+
+export const loadNotes = () => {
+  return async (dispatch) => {
+  const notes = await axios.get(`/api/notes`);
+  dispatch({ type: "LOAD_NOTES", notes })
+  }
+} 
 
 const auth = (state = {}, action)=> {
   if(action.type === 'SET_AUTH'){
