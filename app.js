@@ -38,8 +38,10 @@ app.get('/api/purchases', async(req, res, next)=> {
 
 app.get('/api/notes', async (req, res, next) => {
   try {
-    const notes = await Note.findAll(req.headers.authorization);
-    res.send(notes)
+    const user = await User.byToken(req.headers.authorization);
+    res.send(await Note.findAll({
+      where: {userId: user.id}
+    }))
   } catch (ex) {
     next(ex) 
   }

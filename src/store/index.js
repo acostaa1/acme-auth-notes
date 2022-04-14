@@ -13,8 +13,12 @@ const notes = (state = [], action)=> {
 
 export const loadNotes = () => {
   return async (dispatch) => {
-  const notes = await axios.get(`/api/notes`);
-  dispatch({ type: "LOAD_NOTES", notes })
+  const notes = await axios.get(`/api/notes`, {
+    headers: {
+      authorization: window.localStorage.getItem('token')
+    }
+  });
+  dispatch({ type: "LOAD_NOTES", notes: notes.data })
   }
 } 
 

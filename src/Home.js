@@ -22,9 +22,6 @@ const mapDispatch = (dispatch)=> {
   return {
     logout: ()=> {
       return dispatch(logout());
-    },
-    loadNotes: () => {
-      return dispatch(loadNotes())
     }
   }
 }
